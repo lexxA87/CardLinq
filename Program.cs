@@ -8,11 +8,7 @@
                 Shuffle().
                 Take(16);
 
-            var grouped =
-                from card in deck
-                group card by card.Suit into suitGroup
-                orderby suitGroup.Key descending
-                select suitGroup;
+            IOrderedEnumerable<IGrouping<Suits, Card>> grouped = GroupCards(deck);
 
             foreach (var group in grouped)
             {
@@ -23,6 +19,14 @@ Maximum: {group.Max()}
 ");
             }
 
+        }
+
+        private static IOrderedEnumerable<IGrouping<Suits, Card>> GroupCards(IEnumerable<Card> deck)
+        {
+            return from card in deck
+                   group card by card.Suit into suitGroup
+                   orderby suitGroup.Key descending
+                   select suitGroup;
         }
     }
 }
