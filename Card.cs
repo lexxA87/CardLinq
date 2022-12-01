@@ -1,6 +1,6 @@
 ﻿namespace CardLinq
 {
-    public class Card
+    public class Card : IComparable<Card>
     {
         public Card(Values value, Suits suit)
         {
@@ -16,6 +16,11 @@
             {
                 return $"{Value} of {Suit}";
             }
+        }
+
+        public int CompareTo(Card? other)
+        {
+            return new CardCompererByValue().Compare(this, other);
         }
 
         public override string ToString()
