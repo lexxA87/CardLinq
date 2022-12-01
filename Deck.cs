@@ -17,7 +17,7 @@
                     Add(new Card((Values)value, (Suits)suit));
         }
 
-        public void Shuffle()
+        public Deck Shuffle()
         {
             List<Card> copy = new List<Card>(this);
             Clear();
@@ -28,6 +28,7 @@
                 copy.RemoveAt(index);
                 Add(card);
             }
+            return this;
         }
 
         public Card Deal(int index)
